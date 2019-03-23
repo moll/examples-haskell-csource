@@ -1,0 +1,5 @@
+#!/bin/sh
+APP=$(basename "$0")
+BUILD="$(dirname "$0")"/../dist/build
+export LD_LIBRARY_PATH=$BUILD:$LD_LIBRARY_PATH
+exec "$BUILD/$APP/$APP" "$@"

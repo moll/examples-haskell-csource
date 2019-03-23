@@ -1,0 +1,41 @@
+cabal-version:       2.2
+name:                csource
+version:             0.1.337
+author:              Andri Möll
+maintainer:          andri@dot.ee
+build-type:          Simple
+
+common shared-dependencies
+  default-language: Haskell2010
+  default-extensions: OverloadedStrings
+
+  build-depends:
+    base >=4.11 && <5
+
+library
+  import: shared-dependencies
+  hs-source-dirs: .
+
+  ghc-options:
+    -Wall
+    -fno-warn-name-shadowing
+    -fno-warn-missing-signatures
+
+  exposed-modules: Csource
+  c-sources: Csource.c
+
+executable csource
+  import: shared-dependencies
+  main-is: bin/csource.hs
+  hs-source-dirs: .
+
+  ghc-options:
+    -threaded
+    -rtsopts
+    -Wall
+    -fno-warn-name-shadowing
+    -fno-warn-missing-signatures
+    -fno-warn-missing-home-modules
+    -Wno-type-defaults
+
+  build-depends: csource
